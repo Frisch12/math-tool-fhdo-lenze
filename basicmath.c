@@ -12,5 +12,7 @@ int showMathMenu(void)
 	char buffer[3];
 	int c = getLine("Wahl: ", buffer, sizeof(buffer));
 
+	printf("Deine Wahl:%d\n", toInt(buffer));
+
 	return choise;
 }

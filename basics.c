@@ -13,7 +13,7 @@ static int getLine(char* prompt, char* buffer, size_t sz)
 		printf("%s", prompt);
 		fflush(stdout);
 	}
-	if(fgets(buffer, sz, stdin) == NULL)
+	if(fgets(buffer, sz+1, stdin) == NULL)
 		return NO_INPUT;
 	if(buffer[strlen(buffer)-1] != '\n') {
 		extra = 0;
@@ -21,6 +21,12 @@ static int getLine(char* prompt, char* buffer, size_t sz)
 			extra = 1;
 		return (extra == 1) ? TOO_LONG : OK;
 	}
-	buffer[strlen(buffer)-1] = '\0';
 	return OK;
+}
+
+static int toInt(char* buffer)
+{
+	if(strlen(buffer) > 0)
+		return atoi(&buffer[0]);
+	return 0;
 }
